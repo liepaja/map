@@ -1,0 +1,20 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setPathPrefix = setPathPrefix;
+exports.getPathPrefix = getPathPrefix;
+var pathPrefix = '';
+
+/*
+ * Set a relative path prefix
+ */
+function setPathPrefix(prefix) {
+  pathPrefix = prefix;
+}
+
+function getPathPrefix() {
+  return pathPrefix;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy90ZXN0LXV0aWxzL2x1bWEuZ2wvaW8tYmFzaWMvcGF0aC1wcmVmaXguanMiXSwibmFtZXMiOlsic2V0UGF0aFByZWZpeCIsImdldFBhdGhQcmVmaXgiLCJwYXRoUHJlZml4IiwicHJlZml4Il0sIm1hcHBpbmdzIjoiOzs7OztRQUtnQkEsYSxHQUFBQSxhO1FBSUFDLGEsR0FBQUEsYTtBQVRoQixJQUFJQyxhQUFhLEVBQWpCOztBQUVBOzs7QUFHTyxTQUFTRixhQUFULENBQXVCRyxNQUF2QixFQUErQjtBQUNwQ0QsZUFBYUMsTUFBYjtBQUNEOztBQUVNLFNBQVNGLGFBQVQsR0FBeUI7QUFDOUIsU0FBT0MsVUFBUDtBQUNEIiwiZmlsZSI6InBhdGgtcHJlZml4LmpzIiwic291cmNlc0NvbnRlbnQiOlsibGV0IHBhdGhQcmVmaXggPSAnJztcblxuLypcbiAqIFNldCBhIHJlbGF0aXZlIHBhdGggcHJlZml4XG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBzZXRQYXRoUHJlZml4KHByZWZpeCkge1xuICBwYXRoUHJlZml4ID0gcHJlZml4O1xufVxuXG5leHBvcnQgZnVuY3Rpb24gZ2V0UGF0aFByZWZpeCgpIHtcbiAgcmV0dXJuIHBhdGhQcmVmaXg7XG59XG4iXX0=

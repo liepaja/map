@@ -1,0 +1,42 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isWebglAvailable = undefined;
+
+require('luma.gl');
+
+var _globals = require('./utils/globals');
+
+/* eslint-disable quotes, no-console */
+/* global console */
+var ERR_NO_HEADLESS_GL = 'Failed to dynamically load headless gl. gl not installed or not accessible from this directory.';
+
+var luma = _globals.global.luma;
+if (!_globals.isBrowser) {
+  try {
+    luma.globals.headlessGL = module.require('gl');
+    luma.globals.headlessTypes = module.require('gl/wrap');
+  } catch (error) {
+    console.error(ERR_NO_HEADLESS_GL);
+    console.error('Node error: ' + error.message);
+  }
+  var _luma$globals = luma.globals,
+      headlessGL = _luma$globals.headlessGL,
+      headlessTypes = _luma$globals.headlessTypes;
+
+  if (headlessGL && !(headlessTypes && headlessTypes.WebGLRenderingContext)) {
+    console.error('Could not access headless WebGL type definitions');
+  }
+}
+
+var isWebglAvailable = exports.isWebglAvailable = _globals.isBrowser || luma.globals.headlessGL;
+
+if (isWebglAvailable) {
+  console.log('WebGL initialized');
+}
+
+// Create context
+exports.default = luma.globals.headlessGL;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90ZXN0LXV0aWxzL2x1bWEuZ2wvaGVhZGxlc3MuanMiXSwibmFtZXMiOlsiRVJSX05PX0hFQURMRVNTX0dMIiwibHVtYSIsImdsb2JhbHMiLCJoZWFkbGVzc0dMIiwibW9kdWxlIiwicmVxdWlyZSIsImhlYWRsZXNzVHlwZXMiLCJlcnJvciIsImNvbnNvbGUiLCJtZXNzYWdlIiwiV2ViR0xSZW5kZXJpbmdDb250ZXh0IiwiaXNXZWJnbEF2YWlsYWJsZSIsImxvZyJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVBOztBQUNBOztBQUhBO0FBQ0E7QUFJQSxJQUFNQSxzSEFBTjs7QUFJQSxJQUFNQyxPQUFPLGdCQUFPQSxJQUFwQjtBQUNBLElBQUksbUJBQUosRUFBZ0I7QUFDZCxNQUFJO0FBQ0ZBLFNBQUtDLE9BQUwsQ0FBYUMsVUFBYixHQUEwQkMsT0FBT0MsT0FBUCxDQUFlLElBQWYsQ0FBMUI7QUFDQUosU0FBS0MsT0FBTCxDQUFhSSxhQUFiLEdBQTZCRixPQUFPQyxPQUFQLENBQWUsU0FBZixDQUE3QjtBQUNELEdBSEQsQ0FHRSxPQUFPRSxLQUFQLEVBQWM7QUFDZEMsWUFBUUQsS0FBUixDQUFjUCxrQkFBZDtBQUNBUSxZQUFRRCxLQUFSLGtCQUE2QkEsTUFBTUUsT0FBbkM7QUFDRDtBQVBhLHNCQVFzQlIsS0FBS0MsT0FSM0I7QUFBQSxNQVFQQyxVQVJPLGlCQVFQQSxVQVJPO0FBQUEsTUFRS0csYUFSTCxpQkFRS0EsYUFSTDs7QUFTZCxNQUFJSCxjQUFjLEVBQUVHLGlCQUFpQkEsY0FBY0kscUJBQWpDLENBQWxCLEVBQTJFO0FBQ3pFRixZQUFRRCxLQUFSLENBQWMsa0RBQWQ7QUFDRDtBQUNGOztBQUVNLElBQU1JLDhDQUFtQixzQkFBYVYsS0FBS0MsT0FBTCxDQUFhQyxVQUFuRDs7QUFFUCxJQUFJUSxnQkFBSixFQUFzQjtBQUNwQkgsVUFBUUksR0FBUixDQUFZLG1CQUFaO0FBQ0Q7O0FBRUQ7a0JBQ2VYLEtBQUtDLE9BQUwsQ0FBYUMsVSIsImZpbGUiOiJoZWFkbGVzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIGVzbGludC1kaXNhYmxlIHF1b3Rlcywgbm8tY29uc29sZSAqL1xuLyogZ2xvYmFsIGNvbnNvbGUgKi9cbmltcG9ydCAnbHVtYS5nbCc7XG5pbXBvcnQge2dsb2JhbCwgaXNCcm93c2VyfSBmcm9tICcuL3V0aWxzL2dsb2JhbHMnO1xuXG5jb25zdCBFUlJfTk9fSEVBRExFU1NfR0wgPSBgXFxcbkZhaWxlZCB0byBkeW5hbWljYWxseSBsb2FkIGhlYWRsZXNzIGdsLiBcXFxuZ2wgbm90IGluc3RhbGxlZCBvciBub3QgYWNjZXNzaWJsZSBmcm9tIHRoaXMgZGlyZWN0b3J5LmA7XG5cbmNvbnN0IGx1bWEgPSBnbG9iYWwubHVtYTtcbmlmICghaXNCcm93c2VyKSB7XG4gIHRyeSB7XG4gICAgbHVtYS5nbG9iYWxzLmhlYWRsZXNzR0wgPSBtb2R1bGUucmVxdWlyZSgnZ2wnKTtcbiAgICBsdW1hLmdsb2JhbHMuaGVhZGxlc3NUeXBlcyA9IG1vZHVsZS5yZXF1aXJlKCdnbC93cmFwJyk7XG4gIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgY29uc29sZS5lcnJvcihFUlJfTk9fSEVBRExFU1NfR0wpO1xuICAgIGNvbnNvbGUuZXJyb3IoYE5vZGUgZXJyb3I6ICR7ZXJyb3IubWVzc2FnZX1gKTtcbiAgfVxuICBjb25zdCB7aGVhZGxlc3NHTCwgaGVhZGxlc3NUeXBlc30gPSBsdW1hLmdsb2JhbHM7XG4gIGlmIChoZWFkbGVzc0dMICYmICEoaGVhZGxlc3NUeXBlcyAmJiBoZWFkbGVzc1R5cGVzLldlYkdMUmVuZGVyaW5nQ29udGV4dCkpIHtcbiAgICBjb25zb2xlLmVycm9yKCdDb3VsZCBub3QgYWNjZXNzIGhlYWRsZXNzIFdlYkdMIHR5cGUgZGVmaW5pdGlvbnMnKTtcbiAgfVxufVxuXG5leHBvcnQgY29uc3QgaXNXZWJnbEF2YWlsYWJsZSA9IGlzQnJvd3NlciB8fCBsdW1hLmdsb2JhbHMuaGVhZGxlc3NHTDtcblxuaWYgKGlzV2ViZ2xBdmFpbGFibGUpIHtcbiAgY29uc29sZS5sb2coJ1dlYkdMIGluaXRpYWxpemVkJyk7XG59XG5cbi8vIENyZWF0ZSBjb250ZXh0XG5leHBvcnQgZGVmYXVsdCBsdW1hLmdsb2JhbHMuaGVhZGxlc3NHTDtcbiJdfQ==

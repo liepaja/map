@@ -1,0 +1,4 @@
+'use strict';
+
+require('./write-read-image.spec.js');
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy90ZXN0LXV0aWxzL2x1bWEuZ2wvaW8tZXh0ZW5kZWQvdGVzdC9pbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICcuL3dyaXRlLXJlYWQtaW1hZ2Uuc3BlYy5qcyc7XG4iXX0=

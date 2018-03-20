@@ -1,0 +1,42 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.compressImage = compressImage;
+
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Returns data bytes representing a compressed image in PNG or JPG format,
+ * This data can be saved using file system (f) methods or
+ * used in a request.
+ * @param {Image}  image - Image or Canvas
+ * @param {String} opt.type='png' - png, jpg or image/png, image/jpg are valid
+ * @param {String} opt.dataURI= - Whether to include a data URI header
+ */
+function compressImage(image, type) {
+  if (image instanceof HTMLCanvasElement) {
+    var _canvas = image;
+    return _canvas.toDataURL(type);
+  }
+
+  (0, _assert2.default)(image instanceof Image, 'getImageData accepts image or canvas');
+  var canvas = document.createElement('canvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+  canvas.getContext('2d').drawImage(image, 0, 0);
+
+  // Get raw image data
+  var data = canvas.toDataURL(type || 'png').replace(/^data:image\/(png|jpg);base64,/, '');
+
+  // Dump data into stream and return
+  return new Buffer(data, 'base64');
+} // Image loading/saving for browser
+/* global document, HTMLCanvasElement, Image */
+/* global Buffer */
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy90ZXN0LXV0aWxzL2x1bWEuZ2wvaW8tYmFzaWMvYnJvd3Nlci1jb21wcmVzcy1pbWFnZS5qcyJdLCJuYW1lcyI6WyJjb21wcmVzc0ltYWdlIiwiaW1hZ2UiLCJ0eXBlIiwiSFRNTENhbnZhc0VsZW1lbnQiLCJjYW52YXMiLCJ0b0RhdGFVUkwiLCJJbWFnZSIsImRvY3VtZW50IiwiY3JlYXRlRWxlbWVudCIsIndpZHRoIiwiaGVpZ2h0IiwiZ2V0Q29udGV4dCIsImRyYXdJbWFnZSIsImRhdGEiLCJyZXBsYWNlIiwiQnVmZmVyIl0sIm1hcHBpbmdzIjoiOzs7OztRQWFnQkEsYSxHQUFBQSxhOztBQVZoQjs7Ozs7O0FBRUE7Ozs7Ozs7O0FBUU8sU0FBU0EsYUFBVCxDQUF1QkMsS0FBdkIsRUFBOEJDLElBQTlCLEVBQW9DO0FBQ3pDLE1BQUlELGlCQUFpQkUsaUJBQXJCLEVBQXdDO0FBQ3RDLFFBQU1DLFVBQVNILEtBQWY7QUFDQSxXQUFPRyxRQUFPQyxTQUFQLENBQWlCSCxJQUFqQixDQUFQO0FBQ0Q7O0FBRUQsd0JBQU9ELGlCQUFpQkssS0FBeEIsRUFBK0Isc0NBQS9CO0FBQ0EsTUFBTUYsU0FBU0csU0FBU0MsYUFBVCxDQUF1QixRQUF2QixDQUFmO0FBQ0FKLFNBQU9LLEtBQVAsR0FBZVIsTUFBTVEsS0FBckI7QUFDQUwsU0FBT00sTUFBUCxHQUFnQlQsTUFBTVMsTUFBdEI7QUFDQU4sU0FBT08sVUFBUCxDQUFrQixJQUFsQixFQUF3QkMsU0FBeEIsQ0FBa0NYLEtBQWxDLEVBQXlDLENBQXpDLEVBQTRDLENBQTVDOztBQUVBO0FBQ0EsTUFBTVksT0FBT1QsT0FBT0MsU0FBUCxDQUFpQkgsUUFBUSxLQUF6QixFQUFnQ1ksT0FBaEMsQ0FBd0MsZ0NBQXhDLEVBQTBFLEVBQTFFLENBQWI7O0FBRUE7QUFDQSxTQUFPLElBQUlDLE1BQUosQ0FBV0YsSUFBWCxFQUFpQixRQUFqQixDQUFQO0FBQ0QsQyxDQTlCRDtBQUNBO0FBQ0EiLCJmaWxlIjoiYnJvd3Nlci1jb21wcmVzcy1pbWFnZS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIEltYWdlIGxvYWRpbmcvc2F2aW5nIGZvciBicm93c2VyXG4vKiBnbG9iYWwgZG9jdW1lbnQsIEhUTUxDYW52YXNFbGVtZW50LCBJbWFnZSAqL1xuLyogZ2xvYmFsIEJ1ZmZlciAqL1xuaW1wb3J0IGFzc2VydCBmcm9tICdhc3NlcnQnO1xuXG4vKlxuICogUmV0dXJucyBkYXRhIGJ5dGVzIHJlcHJlc2VudGluZyBhIGNvbXByZXNzZWQgaW1hZ2UgaW4gUE5HIG9yIEpQRyBmb3JtYXQsXG4gKiBUaGlzIGRhdGEgY2FuIGJlIHNhdmVkIHVzaW5nIGZpbGUgc3lzdGVtIChmKSBtZXRob2RzIG9yXG4gKiB1c2VkIGluIGEgcmVxdWVzdC5cbiAqIEBwYXJhbSB7SW1hZ2V9ICBpbWFnZSAtIEltYWdlIG9yIENhbnZhc1xuICogQHBhcmFtIHtTdHJpbmd9IG9wdC50eXBlPSdwbmcnIC0gcG5nLCBqcGcgb3IgaW1hZ2UvcG5nLCBpbWFnZS9qcGcgYXJlIHZhbGlkXG4gKiBAcGFyYW0ge1N0cmluZ30gb3B0LmRhdGFVUkk9IC0gV2hldGhlciB0byBpbmNsdWRlIGEgZGF0YSBVUkkgaGVhZGVyXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBjb21wcmVzc0ltYWdlKGltYWdlLCB0eXBlKSB7XG4gIGlmIChpbWFnZSBpbnN0YW5jZW9mIEhUTUxDYW52YXNFbGVtZW50KSB7XG4gICAgY29uc3QgY2FudmFzID0gaW1hZ2U7XG4gICAgcmV0dXJuIGNhbnZhcy50b0RhdGFVUkwodHlwZSk7XG4gIH1cblxuICBhc3NlcnQoaW1hZ2UgaW5zdGFuY2VvZiBJbWFnZSwgJ2dldEltYWdlRGF0YSBhY2NlcHRzIGltYWdlIG9yIGNhbnZhcycpO1xuICBjb25zdCBjYW52YXMgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdjYW52YXMnKTtcbiAgY2FudmFzLndpZHRoID0gaW1hZ2Uud2lkdGg7XG4gIGNhbnZhcy5oZWlnaHQgPSBpbWFnZS5oZWlnaHQ7XG4gIGNhbnZhcy5nZXRDb250ZXh0KCcyZCcpLmRyYXdJbWFnZShpbWFnZSwgMCwgMCk7XG5cbiAgLy8gR2V0IHJhdyBpbWFnZSBkYXRhXG4gIGNvbnN0IGRhdGEgPSBjYW52YXMudG9EYXRhVVJMKHR5cGUgfHwgJ3BuZycpLnJlcGxhY2UoL15kYXRhOmltYWdlXFwvKHBuZ3xqcGcpO2Jhc2U2NCwvLCAnJyk7XG5cbiAgLy8gRHVtcCBkYXRhIGludG8gc3RyZWFtIGFuZCByZXR1cm5cbiAgcmV0dXJuIG5ldyBCdWZmZXIoZGF0YSwgJ2Jhc2U2NCcpO1xufVxuIl19

@@ -1,0 +1,17 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.inheritsFrom = inheritsFrom;
+// Check if one JavaScript class inherits from another
+function inheritsFrom(Type, ParentType) {
+  while (Type) {
+    if (Type === ParentType) {
+      return true;
+    }
+    Type = Object.getPrototypeOf(Type);
+  }
+  return false;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb3JlL3V0aWxzL2luaGVyaXRzLWZyb20uanMiXSwibmFtZXMiOlsiaW5oZXJpdHNGcm9tIiwiVHlwZSIsIlBhcmVudFR5cGUiLCJPYmplY3QiLCJnZXRQcm90b3R5cGVPZiJdLCJtYXBwaW5ncyI6Ijs7Ozs7UUFDZ0JBLFksR0FBQUEsWTtBQURoQjtBQUNPLFNBQVNBLFlBQVQsQ0FBc0JDLElBQXRCLEVBQTRCQyxVQUE1QixFQUF3QztBQUM3QyxTQUFPRCxJQUFQLEVBQWE7QUFDWCxRQUFJQSxTQUFTQyxVQUFiLEVBQXlCO0FBQ3ZCLGFBQU8sSUFBUDtBQUNEO0FBQ0RELFdBQU9FLE9BQU9DLGNBQVAsQ0FBc0JILElBQXRCLENBQVA7QUFDRDtBQUNELFNBQU8sS0FBUDtBQUNEIiwiZmlsZSI6ImluaGVyaXRzLWZyb20uanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBDaGVjayBpZiBvbmUgSmF2YVNjcmlwdCBjbGFzcyBpbmhlcml0cyBmcm9tIGFub3RoZXJcbmV4cG9ydCBmdW5jdGlvbiBpbmhlcml0c0Zyb20oVHlwZSwgUGFyZW50VHlwZSkge1xuICB3aGlsZSAoVHlwZSkge1xuICAgIGlmIChUeXBlID09PSBQYXJlbnRUeXBlKSB7XG4gICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9XG4gICAgVHlwZSA9IE9iamVjdC5nZXRQcm90b3R5cGVPZihUeXBlKTtcbiAgfVxuICByZXR1cm4gZmFsc2U7XG59XG4iXX0=
